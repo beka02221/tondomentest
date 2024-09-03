@@ -86,3 +86,69 @@
     </script>
 </body>
 </html>
+
+        .matrix span {
+            position: absolute;
+            color: #0f0;
+            font-size: 16px;
+            white-space: nowrap;
+            user-select: none;
+        }
+        @keyframes drop {
+            to {
+                transform: translateY(100vh);
+            }
+        }
+        .text-container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: #00ff00;
+        }
+        .text-container h1 {
+            font-size: 3em;
+            margin: 0;
+            padding: 0;
+            letter-spacing: 0.1em;
+            text-shadow: 0 0 10px #00ff00;
+        }
+        .text-container a {
+            color: #00ff00;
+            text-decoration: none;
+            font-size: 1.5em;
+            display: block;
+            margin-top: 20px;
+            text-shadow: 0 0 5px #00ff00;
+        }
+    </style>
+</head>
+<body>
+    <div class="matrix" id="matrix"></div>
+
+    <div class="text-container">
+        <h1>my projects</h1>
+        <a href="https://beka02221.github.io/-4/" id="link-placeholder">1-price finder</a>
+    </div>
+
+    <script>
+        const matrix = document.getElementById('matrix');
+        const chars = 'abcdefghijklmnopqrstuvwxyz0123456789';
+        const charCount = 100;
+        const dropSpeed = 0.5; // Adjust the speed of the falling effect
+
+        function createChar() {
+            const span = document.createElement('span');
+            span.textContent = chars[Math.floor(Math.random() * chars.length)];
+            span.style.left = `${Math.random() * 100}vw`;
+            span.style.animation = `drop ${dropSpeed + Math.random() * 2}s linear infinite`;
+            matrix.appendChild(span);
+
+            setTimeout(() => span.remove(), (dropSpeed + Math.random() * 2) * 1000);
+        }
+
+        setInterval(createChar, 50); // Adjust the frequency of new characters
+    </script>
+</body>
+</html>
